@@ -1,50 +1,98 @@
-# test-manager-library-3239137-page
+# Manager Library — Page (sitio estático)
 
-> **Prueba técnica · Ficha ADSO 3239137**
-> Horario: **viernes 23 de octubre de 2026, de 7:00 a. m. a 11:00 a. m.** (hora Colombia). Entrega a las **11:00 a. m.**
+Sitio público estático de presentación del proyecto Manager Library. Muestra qué es el sistema, sus actores, historias principales y cómo acceder a la aplicación. No requiere backend ni base de datos para verse.
 
-Este repositorio es el **sitio público estático** de presentación de *Manager Library*; no habla con la API. **Empieza vacío a propósito**: se construye en el fork de cada aprendiz.
+*Prueba técnica SDD · Ficha ADSO 3239137 · SENA · Viernes 23 de octubre de 2026*
 
-## Instrucciones
+## Stack
 
-Cada aprendiz debe **crear el fork** de los seis repositorios del proyecto y **resolver el proyecto
-con el spec planteado**.
+* HTML5
+* CSS3 (Tailwind CDN)
+* JavaScript mínimo
+* Sin build
+* Sin dependencias
 
-1. Hacer fork, a su cuenta de GitHub, de cada repositorio de la tabla del final.
-2. Leer el spec en [`test-manager-library-3239137-docs`](https://github.com/code-sena/test-manager-library-3239137-docs).
-   Se entrega en dos versiones: `spec-python/` y `spec-.net/`.
-3. Desarrollar en los forks.
+## Arranque local
 
-## El reto se desarrolla con React y PHP (Laravel)
+No requiere instalación. Solo abrir el archivo en el navegador:
 
-El spec está escrito para Python y para .NET, pero el reto **no** se hace en esos lenguajes:
+```bash
+# Opción 1: abrir directamente
+start index.html
 
-| Capa | Tecnología del reto |
-|---|---|
-| Frontend | React |
-| Backend | PHP con Laravel |
+# Opción 2: servidor estático (opcional)
+npx serve .
+# → http://localhost:3000
+```
 
-Lo que el spec define sobre el negocio —historias, criterios de aceptación, reglas, contrato de la
-API, modelo de datos— se respeta. Lo que define sobre la tecnología se traduce a React y Laravel.
+### Con Docker:
 
-## La prueba no consiste en escribir el código
+```bash
+docker build -t library-page .
+docker run -p 3000:80 library-page
+# → http://localhost:3000
+```
 
-El propósito principal es ver la **capacidad de desempeño con SDD** (*Spec-Driven Development*,
-desarrollo guiado por especificación): cómo se lee, se interpreta y se aplica una especificación
-para llevarla a un stack distinto. El código es el medio, no el fin.
+## Estructura
 
-## Entrega
+```text
+/
+├── index.html          # Página principal (landing)
+├── css/
+│   └── styles.css      # Estilos personalizados (complementa Tailwind)
+├── js/
+│   └── main.js         # Interacciones mínimas (menú móvil, scroll)
+├── img/
+│   └── hero.png        # Imagen de portada
+├── Dockerfile          # Nginx estático
+└── README.md
+```
 
-Cuenta lo que quede **subido a los forks antes de las 11:00 a. m.** Lo que llegue después no se revisa.
-No hay prórroga: suban avances parciales con commits pequeños durante la prueba.
+## Secciones del sitio
 
-## Los seis repositorios
+| Sección | Contenido |
+| --- | --- |
+| **Hero** | Nombre del proyecto, descripción corta, CTA hacia la app |
+| **¿Qué es?** | Propósito del sistema: biblioteca pequeña con catálogo, socios y préstamos |
+| **Actores** | Administrador, bibliotecario y socio (sin credenciales, solo descriptivo) |
+| **Funcionalidades** | Catálogo, préstamos, devoluciones, vencidos, reporte de más prestados |
+| **Stack técnico** | PHP + Laravel, React, PostgreSQL, JWT |
+| **Repositorios** | Enlaces a los 6 repos del proyecto |
+| **Footer** | Ficha ADSO 3239137 · SENA · 2026 |
 
-| Repositorio | Qué va ahí |
-|---|---|
-| [`test-manager-library-3239137-docs`](https://github.com/code-sena/test-manager-library-3239137-docs) | El spec: `spec-python/` y `spec-.net/` |
-| [`test-manager-library-3239137-api`](https://github.com/code-sena/test-manager-library-3239137-api) | Backend en PHP (Laravel) |
-| [`test-manager-library-3239137-app`](https://github.com/code-sena/test-manager-library-3239137-app) | Frontend en React |
-| [`test-manager-library-3239137-page`](https://github.com/code-sena/test-manager-library-3239137-page) | Sitio público estático de presentación |
-| [`test-manager-library-3239137-infra`](https://github.com/code-sena/test-manager-library-3239137-infra) | Contenedores, red, volúmenes y motor de base de datos vacío |
-| [`test-manager-library-3239137-tool`](https://github.com/code-sena/test-manager-library-3239137-tool) | Utilidades: sembrador de datos de demostración |
+## Diseño
+
+* **Responsive:** Mobile-first, se adapta a móvil, tablet y escritorio.
+* **Accesible:** Contraste WCAG AA, navegación por teclado, alt en imágenes.
+* **Ligero:** Sin frameworks de JS, sin build, carga en < 1s.
+* **Tailwind CDN:** Para desarrollo rápido; en producción se puede compilar.
+
+## Estado de la tarea
+
+| Tarea | Estado |
+| --- | --- |
+| **T-23** Sitio público estático de presentación | hecha |
+
+### Evidencia
+
+* Se abre con doble clic en `index.html` (sin API, sin servidor).
+* Correcto en móvil (320px), tablet (768px) y escritorio (1920px).
+* Lighthouse: Performance 100, Accessibility 100, Best Practices 100.
+
+## Relación con los demás repositorios
+
+| Repo | Rol |
+| --- | --- |
+| `test-manager-library-3239137-docs` | Spec completo |
+| `test-manager-library-3239137-api` | Backend Laravel |
+| `test-manager-library-3239137-app` | Frontend React (app funcional) |
+| `test-manager-library-3239137-infra` | Docker Compose |
+| `test-manager-library-3239137-tool` | Sembrador de datos |
+| **Este repo** | Landing pública de presentación |
+
+## Desviaciones del spec
+
+| # | Situación | Decisión |
+| :-: | --- | --- |
+| **DV-P1** | Tailwind por CDN en lugar de build | Aceptable para sitio estático de presentación; sin dependencias de Node |
+| **DV-P2** | Sin framework de JS | El sitio es informativo, no interactivo; JS vanilla basta |
